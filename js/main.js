@@ -136,54 +136,26 @@ function validate() {
   return firstInvalid;
 }
 
-// Las solicitudes se envían por correo a través de FormSubmit (web estática, sin servidor propio)
-const FORM_ENDPOINT = 'https://formsubmit.co/ajax/victorrs427@gmail.com';
-
-form.addEventListener('submit', async e => {
+// Web de demostración: el envío se simula y los datos no salen del navegador
+form.addEventListener('submit', e => {
   e.preventDefault();
   const invalid = validate();
   if (invalid) { invalid.focus(); return; }
 
   const message = document.getElementById('form-success');
   const submit = form.querySelector('button[type="submit"]');
-  const nombre = form.nombre.value.trim();
+  const nombre = form.nombre.value.trim().split(' ')[0];
 
   submit.disabled = true;
   submit.textContent = 'Enviando…';
   message.hidden = true;
 
-  try {
-    const res = await fetch(FORM_ENDPOINT, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify({
-        _subject: `Nueva solicitud VR MOTORS · ${form.interes.value} · ${summaryModel.textContent}`,
-        _template: 'table',
-        _captcha: 'false',
-        _replyto: form.email.value.trim(),
-        Nombre: nombre,
-        Email: form.email.value.trim(),
-        Teléfono: form.telefono.value.trim() || '—',
-        Interés: form.interes.value,
-        Modelo: summaryModel.textContent,
-        Precio: `${summaryPrice.textContent} €`,
-        'Fórmula de compra': form.formula.selectedOptions[0].textContent,
-      }),
-    });
-    const data = await res.json().catch(() => ({}));
-    if (!res.ok || String(data.success) !== 'true') throw new Error(data.message || res.statusText);
-
-    message.classList.remove('is-error');
-    message.textContent = `Gracias, ${nombre.split(' ')[0]}. Hemos recibido tu solicitud para el ${summaryModel.textContent}. Un asesor de VR MOTORS te escribirá en las próximas 48 horas.`;
+  setTimeout(() => {
+    message.textContent = `Gracias, ${nombre}. Hemos recibido tu solicitud para el ${summaryModel.textContent}. Un asesor de VR MOTORS te escribirá en las próximas 48 horas.`;
+    message.hidden = false;
     submit.textContent = 'Solicitud enviada';
     form.querySelectorAll('input, select').forEach(el => { el.disabled = true; });
-  } catch (err) {
-    message.classList.add('is-error');
-    message.textContent = 'No hemos podido enviar tu solicitud. Comprueba tu conexión e inténtalo de nuevo en unos minutos.';
-    submit.disabled = false;
-    submit.textContent = 'Enviar solicitud';
-  }
-  message.hidden = false;
+  }, 1200);
 });
 
 form.addEventListener('input', e => {

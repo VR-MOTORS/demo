@@ -386,7 +386,6 @@ p { margin: 0 0 1em; }
 .field-error:empty { display: none; }
 .check { display: flex; gap: 12px; align-items: flex-start; font-size: .95rem; cursor: pointer; }
 .check input { width: 20px; height: 20px; margin-top: 3px; accent-color: var(--azul); flex: none; }
-.form-success.is-error { border-color: var(--error); background: rgba(255,107,107,.08); }
 .form-success {
   margin-top: 16px; padding: 16px; border-radius: var(--radius);
   border: 1px solid var(--azul); color: var(--blanco); background: rgba(31,122,255,.08);
