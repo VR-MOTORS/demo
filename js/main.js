@@ -161,5 +161,3 @@ form.addEventListener('submit', e => {
 form.addEventListener('input', e => {
   if (e.target.getAttribute('aria-invalid') === 'true') validate();
 });
-
-document.getElementById('year').textContent = new Date().getFullYear();
