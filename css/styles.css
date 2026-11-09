@@ -200,13 +200,6 @@ p { margin: 0 0 1em; }
 .hero-model { min-height: 88svh; padding-top: 96px; }
 .hero-model .hero-bg { object-position: 72% center; }
 
-/* Plano de dimensiones dentro de la ficha */
-.plan-figure { margin: 32px 0 0; max-width: 640px; }
-.plan-figure img { display: block; width: 100%; height: auto; border-radius: var(--radius); border: 1px solid var(--linea); background: #fff; }
-.plan-figure a { display: block; transition: transform .3s ease; }
-.plan-figure a:hover { transform: translateY(-2px); }
-.plan-figure figcaption { margin-top: 10px; font-size: .85rem; color: var(--acero); }
-
 /* Diseño */
 .views { display: grid; gap: 32px; }
 .view { margin: 0; }
