@@ -492,6 +492,8 @@ p { margin: 0 0 1em; }
   .pillars { grid-template-columns: repeat(3, 1fr); gap: 24px; }
   .views { grid-template-columns: repeat(3, 1fr); gap: 24px; }
   .range { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .range-single { grid-template-columns: minmax(0, 400px); justify-content: center; }
+  .range-single .model-card-featured { transform: none; }
   .model-card-featured { transform: translateY(-12px); }
   .model-card-featured.reveal:not(.is-visible) { transform: translateY(12px); }
 

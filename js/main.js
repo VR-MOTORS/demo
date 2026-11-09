@@ -103,9 +103,7 @@ const summaryPrice = document.getElementById('summary-price');
 // Desglose del precio por modelo. Impuesto de matriculación según emisiones:
 // 0 % por debajo de 120 g CO₂/km, 4,75 % hasta 159 g, 9,75 % hasta 199 g.
 const breakdowns = {
-  'vr01-hybrid': [22400, 5800, 3949, 0, 6751],
-  'vr01-phev':   [27300, 6300, 4338, 0, 7962],
-  'vr01-e':      [34600, 7000, 4598, 0, 9702],
+  'vr01-tds':    [26000, 5900, 3604, 1686, 7810],
   tds:           [24500, 5500, 3200, 2255, 7445],
   hybrid:        [26400, 6000, 3500, 2528, 8072],
   e:             [36900, 7500, 4279, 0, 10221],
