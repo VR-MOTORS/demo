@@ -196,6 +196,12 @@ p { margin: 0 0 1em; }
 .pillar-num { display: block; font-family: var(--font-title); color: var(--azul); letter-spacing: .2em; font-size: .8rem; margin-bottom: 14px; }
 .pillar p { margin: 0; }
 
+/* Presentación de modelo (VR-01) */
+/* Foto y cifras al inicio de la sección de un modelo */
+.model-showcase { margin: 0 0 32px; }
+.model-showcase img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; object-position: center 70%; border-radius: var(--radius); }
+.model-stats { margin-bottom: 56px; }
+
 /* Diseño */
 .views { display: grid; gap: 32px; }
 .view { margin: 0; }
@@ -238,10 +244,9 @@ p { margin: 0 0 1em; }
 
 /* Pestañas ficha técnica */
 .tab-list {
-  display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none;
+  display: flex; flex-wrap: wrap; gap: 4px;
   border-bottom: 1px solid var(--linea); margin-bottom: 32px;
 }
-.tab-list::-webkit-scrollbar { display: none; }
 .tab-list button {
   flex: 0 0 auto; min-height: 48px; padding: 0 18px;
   font-family: var(--font-title); font-size: .75rem; letter-spacing: .18em; text-transform: uppercase;
@@ -334,6 +339,7 @@ p { margin: 0 0 1em; }
 }
 .timeline time { font-family: var(--font-title); font-weight: 600; color: var(--blanco); letter-spacing: .1em; }
 .timeline p { margin: 2px 0 0; }
+.nowrap { white-space: nowrap; }
 
 .jobs {
   display: grid; gap: 28px; margin-top: 64px; padding: 32px 24px;
@@ -443,7 +449,7 @@ p { margin: 0 0 1em; }
   .process { grid-template-columns: repeat(2, 1fr); }
   .quality-list { grid-template-columns: repeat(2, 1fr); }
   .features { grid-template-columns: repeat(2, 1fr); }
-  .eco-facts { grid-template-columns: repeat(3, 1fr); }
+  .eco-facts { grid-template-columns: repeat(2, 1fr); }
   .field-row { grid-template-columns: 1fr 1fr; }
   .choice-group { grid-template-columns: repeat(3, 1fr); }
   .choice span { flex-direction: column; align-items: flex-start; gap: 2px; height: 100%; }
@@ -487,7 +493,7 @@ p { margin: 0 0 1em; }
   .spec-list { grid-template-columns: repeat(3, 1fr); }
 
   .split { grid-template-columns: 1fr 1fr; gap: 56px; }
-  .features { grid-template-columns: repeat(4, 1fr); }
+  .features { grid-template-columns: repeat(3, 1fr); }
 
   .stats { grid-template-columns: repeat(6, 1fr); }
   .stats li { padding: 28px 18px; }
@@ -495,11 +501,14 @@ p { margin: 0 0 1em; }
   .quality-list { grid-template-columns: repeat(3, 1fr); }
 
   .sustain { grid-template-columns: 1fr 1fr; }
+  .eco-facts { grid-template-columns: repeat(4, 1fr); }
 
   .brand-block { grid-template-columns: 2fr 3fr; gap: 64px; }
 
+  .model-showcase img { aspect-ratio: 2.2 / 1; }
+
   .timeline {
-    display: grid; grid-template-columns: repeat(6, 1fr);
+    display: grid; grid-template-columns: repeat(7, 1fr);
     padding: 24px 0 0; border-left: 0; border-top: 1px solid var(--linea);
   }
   .timeline li { padding: 0 16px 0 0; }

@@ -68,26 +68,29 @@ const revealObserver = new IntersectionObserver((entries, obs) => {
 }, { threshold: 0.15 });
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-/* ---------- Pestañas de la ficha técnica ---------- */
-const tabs = [...document.querySelectorAll('[role="tab"]')];
+/* ---------- Pestañas de las fichas técnicas ---------- */
+// Cada ficha (VR-01, VR 525) tiene su propio grupo de pestañas
+document.querySelectorAll('[role="tablist"]').forEach(list => {
+  const tabs = [...list.querySelectorAll('[role="tab"]')];
 
-function selectTab(tab) {
-  tabs.forEach(t => {
-    const selected = t === tab;
-    t.setAttribute('aria-selected', String(selected));
-    t.tabIndex = selected ? 0 : -1;
-    document.getElementById(t.getAttribute('aria-controls')).hidden = !selected;
-  });
-  tab.focus();
-}
+  function selectTab(tab) {
+    tabs.forEach(t => {
+      const selected = t === tab;
+      t.setAttribute('aria-selected', String(selected));
+      t.tabIndex = selected ? 0 : -1;
+      document.getElementById(t.getAttribute('aria-controls')).hidden = !selected;
+    });
+    tab.focus();
+  }
 
-tabs.forEach((tab, i) => {
-  tab.addEventListener('click', () => selectTab(tab));
-  tab.addEventListener('keydown', e => {
-    const dir = { ArrowRight: 1, ArrowLeft: -1 }[e.key];
-    if (dir) selectTab(tabs[(i + dir + tabs.length) % tabs.length]);
-    if (e.key === 'Home') selectTab(tabs[0]);
-    if (e.key === 'End') selectTab(tabs[tabs.length - 1]);
+  tabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => selectTab(tab));
+    tab.addEventListener('keydown', e => {
+      const dir = { ArrowRight: 1, ArrowLeft: -1 }[e.key];
+      if (dir) selectTab(tabs[(i + dir + tabs.length) % tabs.length]);
+      if (e.key === 'Home') selectTab(tabs[0]);
+      if (e.key === 'End') selectTab(tabs[tabs.length - 1]);
+    });
   });
 });
 
@@ -97,10 +100,26 @@ const modelInputs = form.querySelectorAll('input[name="modelo"]');
 const summaryModel = document.getElementById('summary-model');
 const summaryPrice = document.getElementById('summary-price');
 
+// Desglose del precio por modelo. Impuesto de matriculación según emisiones:
+// 0 % por debajo de 120 g CO₂/km, 4,75 % hasta 159 g, 9,75 % hasta 199 g.
+const breakdowns = {
+  'vr01-hybrid': [22400, 5800, 3949, 0, 6751],
+  'vr01-phev':   [27300, 6300, 4338, 0, 7962],
+  'vr01-e':      [34600, 7000, 4598, 0, 9702],
+  tds:           [24500, 5500, 3200, 2255, 7445],
+  hybrid:        [26400, 6000, 3500, 2528, 8072],
+  e:             [36900, 7500, 4279, 0, 10221],
+};
+const breakdownModel = document.getElementById('breakdown-model');
+const breakdownCells = document.querySelectorAll('#breakdown-list b');
+
 function updateSummary() {
   const checked = form.querySelector('input[name="modelo"]:checked');
-  summaryModel.textContent = checked.closest('.choice').querySelector('b').textContent.replace(/^TDS/, 'VR 525 TDS');
+  const name = checked.closest('.choice').querySelector('b').textContent.replace(/^TDS/, 'VR 525 TDS');
+  summaryModel.textContent = name;
   summaryPrice.textContent = fmt.format(Number(checked.dataset.price));
+  breakdownModel.textContent = name;
+  (breakdowns[checked.value] || []).forEach((v, i) => { breakdownCells[i].textContent = `${fmt.format(v)} €`; });
 }
 modelInputs.forEach(input => input.addEventListener('change', updateSummary));
 
