@@ -165,7 +165,7 @@ p { margin: 0 0 1em; }
   background:
     linear-gradient(180deg, rgba(10,11,13,.85) 0%, rgba(10,11,13,.2) 30%, rgba(10,11,13,.55) 60%, var(--negro) 100%);
 }
-.hero h1 {
+.hero h1, .hero-model h2 {
   font-size: clamp(2.6rem, 11vw, 6rem);
   font-weight: 500; letter-spacing: .14em; margin-bottom: .3em;
 }
@@ -196,11 +196,9 @@ p { margin: 0 0 1em; }
 .pillar-num { display: block; font-family: var(--font-title); color: var(--azul); letter-spacing: .2em; font-size: .8rem; margin-bottom: 14px; }
 .pillar p { margin: 0; }
 
-/* Presentación de modelo (VR-01) */
-/* Foto y cifras al inicio de la sección de un modelo */
-.model-showcase { margin: 0 0 32px; }
-.model-showcase img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; object-position: center 70%; border-radius: var(--radius); }
-.model-stats { margin-bottom: 56px; }
+/* Portada de modelo (VR-01): misma composición que el hero principal */
+.hero-model { min-height: 88svh; padding-top: 96px; }
+.hero-model .hero-bg { object-position: 72% center; }
 
 /* Diseño */
 .views { display: grid; gap: 32px; }
@@ -266,7 +264,7 @@ p { margin: 0 0 1em; }
 
 /* Tecnología */
 .split { display: grid; gap: 28px; align-items: center; margin-bottom: 56px; }
-.split-img { width: 100%; max-width: 560px; aspect-ratio: 307 / 190; object-fit: cover; border-radius: var(--radius); }
+.split-img { width: 100%; max-width: 560px; aspect-ratio: 16 / 10; object-fit: cover; border-radius: var(--radius); }
 .features { display: grid; gap: 16px; }
 .feature { padding: 24px; border-left: 2px solid var(--azul); background: var(--grafito); border-radius: 0 var(--radius) var(--radius) 0; }
 .feature p { margin: 0; }
@@ -418,6 +416,13 @@ p { margin: 0 0 1em; }
 .site-footer { border-top: 1px solid var(--linea); padding: 48px 0 32px; background: var(--negro); }
 .footer-inner { display: grid; gap: 28px; }
 .footer-brand p { margin: 0 0 6px; }
+.footer-map { margin-top: 18px; max-width: 520px; }
+.footer-map iframe {
+  display: block; width: 100%; aspect-ratio: 16 / 10; border: 1px solid var(--linea); border-radius: var(--radius);
+  filter: grayscale(.35) contrast(1.05) brightness(.9);
+}
+.footer-map a { display: inline-block; margin-top: 10px; font-size: .85rem; color: var(--acero-claro); }
+.footer-map a:hover { color: var(--blanco); }
 .claim { font-family: var(--font-title); font-size: .72rem; letter-spacing: .3em; text-transform: uppercase; color: var(--azul); }
 .footer-links { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
 .footer-links a { text-decoration: none; color: var(--acero-claro); }
@@ -504,8 +509,6 @@ p { margin: 0 0 1em; }
   .eco-facts { grid-template-columns: repeat(4, 1fr); }
 
   .brand-block { grid-template-columns: 2fr 3fr; gap: 64px; }
-
-  .model-showcase img { aspect-ratio: 2.2 / 1; }
 
   .timeline {
     display: grid; grid-template-columns: repeat(7, 1fr);
